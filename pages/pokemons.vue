@@ -35,18 +35,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@nuxtjs/composition-api'
+import { defineComponent, reactive, onMounted } from '@nuxtjs/composition-api'
 
+// 以下、@vue/apollo-composable を使ったCompositioonAPI向けの書き方
 import { useQuery } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
 
-// import pokemons from '~/apollo/queries/pokemons.gql'
-
-// const numGetPokemons = 151
+// 本当はファイルを分けたいが、エラーが解決できないので原因調査
+// import getPokemons from '@/apollo/queries/pokemons.gql'
 
 export default defineComponent({
+  components: {},
+
   setup() {
     const state = reactive({})
+
+    // これも公式ドキュメントに従って書いたが動かないので原因調査
+    // const { result, loading } = useQuery(
+    //   gql`
+    //     query getPokemons($num: Int!) {
+    //       pokemons(first: $num) {
+    //         id
+    //         name
+    //         image
+    //       }
+    //     }
+    //   `,
+    //   {
+    //     first: 5,
+    //   }
+    // )
+
     const { result, loading } = useQuery(
       gql`
         query getPokemons {
@@ -58,6 +77,9 @@ export default defineComponent({
         }
       `
     )
+
+    onMounted(async () => {})
+
     return { state, result, loading }
   },
 })
