@@ -24,7 +24,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/test.ts'],
+  plugins: ['~/plugins/test.ts', '@/plugins/provide-apollo-client.ts'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -39,7 +39,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxtjs/apollo'],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -58,6 +58,16 @@ export default {
         },
       },
     },
+  },
+
+  // Apollo module configuration
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://graphql-pokemon2.vercel.app',
+      },
+    },
+    includeNodes: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

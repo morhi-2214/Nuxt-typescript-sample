@@ -3,34 +3,21 @@
     "target": "ES2018",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "lib": [
-      "ESNext",
-      "ESNext.AsyncIterable",
-      "DOM"
-    ],
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
     "esModuleInterop": true,
     "allowJs": true,
-    "sourceMap": true,
+    "sourceMap": true, // ここは常にTrueにしておく。バンドル先と元のコードの対応をつけることができる
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "@/*": [
-        "./*"
-      ]
+      "~/*": ["./*"],
+      "@/*": ["./*"]
     },
-    "types": [
-      "@nuxt/types",
-      "@types/node"
-    ]
+    "types": ["@nuxt/types", "@types/node"]
   },
-  "exclude": [
-    "node_modules",
-    ".nuxt",
-    "dist"
-  ]
+  "files": ["types/index.d.ts", "types/gql.d.ts"],
+  "include": ["apollo/queries/*.gql", "apollo/queries/**/*.gql"],
+  "exclude": ["node_modules", ".nuxt", "dist"]
 }
